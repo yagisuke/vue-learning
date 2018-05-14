@@ -1,7 +1,46 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-new Vue({
+var newInstance = new Vue({
   el: '#app',
-  render: h => h(App)
+  data: {
+    count: 0
+  },
+  methods: {
+    coountup: function() {
+      this.count++
+    }
+  },
+  beforeCreate: () => {
+    console.log('ライフサイクルフック: beforeCreate')
+    this.showFlg = true
+    this.count++
+  },
+  created: () => {
+    console.log('ライフサイクルフック: created')
+    this.count++
+  },
+  beforeMount: () => {
+    console.log('ライフサイクルフック: beforeMount')
+    this.count++
+  },
+  mounted: () => {
+    console.log('ライフサイクルフック: mounted')
+    this.count++
+  },
+  beforeUpdate: () => {
+    console.log('ライフサイクルフック: beforeUpdate')
+    this.count++
+  },
+  updated: () => {
+    console.log('ライフサイクルフック: updated')
+    this.count++
+  },
+  beforeDestroy: () => {
+    console.log('ライフサイクルフック: beforeDestroy')
+    this.count++
+  },
+  destroyed: () => {
+    console.log('ライフサイクルフック: destroyed')
+  }
 })
