@@ -3,10 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title>vue-learning</title>
+    <style>
+      img {
+        display: inline;
+      }
+    </style>
   </head>
   <body>
     <div id="app">
-      <div>{{ count }}</div>
+      <div>
+        <div>count: {{ count }}</div>
+        <button @click="increment"> + </button>
+        <button @click="decrement"> - </button>
+      </div>
+      <span v-for="_num in count">
+        <img src='/dist/logo.png' alt='vue.js'>
+      </span>
     </div>
     <script src="/dist/build.js"></script>
   </body>

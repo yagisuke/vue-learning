@@ -1,44 +1,69 @@
 import Vue from 'vue'
-import App from './App.vue'
+import Vuex from 'vuex'
 
-var newInstance = new Vue({
-  el: '#app',
-  data: {
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
     count: 0
   },
+  mutations: {
+    increment(state) {
+      state.count++
+    },
+    decrement(state) {
+      if (state.count === 0) {
+        return
+      }
+
+      state.count--
+    }
+  },
+  actions: {
+    increment(context) {
+      context.commit('increment')
+    },
+    decrement(context) {
+      context.commit('decrement')
+    }
+  }
+})
+
+new Vue({
+  el: '#app',
+  computed: {
+    count() {
+      return store.state.count
+    }
+  },
   methods: {
-    coountup: function() {
-      this.count++
+    increment() {
+      store.dispatch('increment')
+    },
+    decrement() {
+      store.dispatch('decrement')
     }
   },
   beforeCreate: () => {
     console.log('ライフサイクルフック: beforeCreate')
-    this.showFlg = true
-    this.count++
   },
   created: () => {
     console.log('ライフサイクルフック: created')
-    this.count++
   },
   beforeMount: () => {
     console.log('ライフサイクルフック: beforeMount')
-    this.count++
   },
   mounted: () => {
     console.log('ライフサイクルフック: mounted')
-    this.count++
   },
   beforeUpdate: () => {
     console.log('ライフサイクルフック: beforeUpdate')
-    this.count++
   },
   updated: () => {
     console.log('ライフサイクルフック: updated')
-    this.count++
   },
   beforeDestroy: () => {
     console.log('ライフサイクルフック: beforeDestroy')
-    this.count++
   },
   destroyed: () => {
     console.log('ライフサイクルフック: destroyed')
