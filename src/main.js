@@ -50,3 +50,32 @@ new Vue({
     }
   }
 })
+
+new Vue({
+  el: '#todo',
+  data: {
+    todo: '',
+    todoList: []
+  },
+  methods: {
+    sendTodo() {
+      this.todoList.push({
+        text: this.todo,
+        status: 'todo'
+      })
+      this.todo = ''
+    },
+    doneTodo(item) {
+      if (item.status === 'done') {
+        item.status = 'todo'
+      } else {
+        item.status = 'done'
+      }
+    },
+    deleteTodo(item) {
+      this.todoList = this.todoList.filter(todo => {
+        return todo.text !== item.text
+      })
+    }
+  }
+})

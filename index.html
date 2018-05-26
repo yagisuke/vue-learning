@@ -29,8 +29,8 @@
   </style>
   </head>
   <body>
+    <h1>vue-learning</h1>
     <div id="app">
-      <h1>vue-learning</h1>
       <h2>dataの表示</h2>
       <div>{{ count }}</div>
       <h2>v-showの使い方</h2>
@@ -47,8 +47,8 @@
         <li>{{ index }}: {{ key }} - {{ val }}</li>
       </ul>
       <h2>v-onの使い方</h2>
-      <button type="button" v-on:click="increment">+</button>
-      <button type="button" v-on:click="decrement">-</button>
+      <button v-on:click="increment">+</button>
+      <button v-on:click="decrement">-</button>
       <span>{{ count }}</span>
       <h2>v-modelの使い方</h2>
       <h3>text</h3>
@@ -86,7 +86,7 @@
       </select>
       <div v-show="vModelSelectBox !== ''">
         <p v-if="vModelSelectBox === '高尾山'">行ってらっしゃい</p>
-        <p v-if="vModelSelectBox !== '高尾山'">僕も行きたいです</p>
+        <p v-else>僕も行きたいです</p>
       </div>
       <h3>selectbox multiple version</h3>
       <select v-model="vModelMultiSelectBox" multiple>
@@ -100,8 +100,8 @@
       </select>
       <div v-show="vModelMultiSelectBox.length > 0">
         <p v-if="vModelMultiSelectBox.length === 1 && vModelMultiSelectBox.includes('高尾山')">行ってらっしゃい</p>
-        <p v-if="vModelMultiSelectBox.length > 1 && vModelMultiSelectBox.includes('高尾山')">高尾山以外僕も行きたいです</p>
-        <p v-if="!vModelMultiSelectBox.includes('高尾山')">僕も行きたいです</p>
+        <p v-else-if="vModelMultiSelectBox.length > 1 && vModelMultiSelectBox.includes('高尾山')">高尾山以外僕も行きたいです</p>
+        <p v-else>僕も行きたいです</p>
       </div>
       <h2>computed</h2>
       <p>odd list</p>
@@ -115,6 +115,27 @@
       <h2>template</h2>
       <component-item></component-item>
       <component-props-item content="chu-chu-"></component-props-item>
+    </div>
+    <div id="todo">
+      <h2>todo app</h2>
+      <form v-on:submit.prevent="sendTodo">
+        <input v-model='todo'>
+        <button type="submit">追加</button>
+      </form>
+      <ul v-for="(item) in todoList">
+        <li>
+          <span v-on:click='doneTodo(item)'>
+            {{ item.status }}
+            <s v-if="item.status === 'done'">
+              {{ item.text }}
+            </s>
+            <span v-else>
+              {{ item.text }}
+            </span>
+          </span>
+          <button v-on:click="deleteTodo(item)">delete</button>
+        </li>
+      </ul>
     </div>
     <script src="/dist/build.js"></script>
   </body>
