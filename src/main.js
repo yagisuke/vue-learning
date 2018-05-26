@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Hello from './components/hello.vue'
 
 Vue.component('component-item', {
   template: `
@@ -78,4 +79,10 @@ new Vue({
       })
     }
   }
+})
+
+new Vue({
+  el: '#component',
+  components: { Hello },
+  template: '<hello></hello>'
 })

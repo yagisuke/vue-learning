@@ -52,31 +52,31 @@
       <span>{{ count }}</span>
       <h2>v-modelの使い方</h2>
       <h3>text</h3>
-      <input v-model='vModelText'>
+      <input v-model="vModelText">
       <p>{{ vModelText }}</p>
-      <textarea v-model='vModelTextArea'></textarea>
+      <textarea v-model="vModelTextArea"></textarea>
       <p class="text">{{ vModelTextArea }}</p>
       <h3>checkbox</h3>
-      <input type='checkbox' id="vModelCheckbox" v-model="vModelChecked">
-      <label for='vModelCheckbox'>理解した</label>
+      <input type="checkbox" id="vModelCheckbox" v-model="vModelChecked">
+      <label for="vModelCheckbox">理解した</label>
       <p v-show="vModelChecked">理解できてよかったです</p>
       <h3>checkbox list version</h3>
-      <input type='checkbox' id="vModelCheckbox1" value="React" v-model="vModelCheckedList">
-      <label for='vModelCheckbox1'>Reactを理解した</label>
-      <input type='checkbox' id="vModelCheckbox2" value="Vue" v-model="vModelCheckedList">
-      <label for='vModelCheckbox2'>Vueを理解した</label>
-      <input type='checkbox' id="vModelCheckbox3" value="Angular" v-model="vModelCheckedList">
-      <label for='vModelCheckbox3'>Angularを理解した</label>
+      <input type="checkbox" id="vModelCheckbox1" value="React" v-model="vModelCheckedList">
+      <label for="vModelCheckbox1">Reactを理解した</label>
+      <input type="checkbox" id="vModelCheckbox2" value="Vue" v-model="vModelCheckedList">
+      <label for="vModelCheckbox2">Vueを理解した</label>
+      <input type="checkbox" id="vModelCheckbox3" value="Angular" v-model="vModelCheckedList">
+      <label for="vModelCheckbox3">Angularを理解した</label>
       <p v-show="vModelCheckedList.length">{{ vModelCheckedList }}</p>
       <h3>radio</h3>
-      <input type='radio' id="vModelRadioFM" value="FM" v-model="vModelRadio">
-      <label for='vModelRadioFM'>FM</label>
-      <input type='radio' id="vModelRadioAM" value="AM" v-model="vModelRadio">
-      <label for='vModelRadioAM'>AM</label>
+      <input type="radio" id="vModelRadioFM" value="FM" v-model="vModelRadio">
+      <label for="vModelRadioFM">FM</label>
+      <input type="radio" id="vModelRadioAM" value="AM" v-model="vModelRadio">
+      <label for="vModelRadioAM">AM</label>
       <p>{{ vModelRadio }}</p>
       <h3>selectbox</h3>
       <select v-model="vModelSelectBox">
-        <option value='' disabled>行きたい山を選んでください</option>
+        <option value="" disabled>行きたい山を選んでください</option>
         <option>高尾山</option>
         <option>剣岳</option>
         <option>槍ヶ岳</option>
@@ -90,7 +90,7 @@
       </div>
       <h3>selectbox multiple version</h3>
       <select v-model="vModelMultiSelectBox" multiple>
-        <option value='' disabled>行きたい山を選んでください</option>
+        <option value="" disabled>行きたい山を選んでください</option>
         <option>高尾山</option>
         <option>剣岳</option>
         <option>槍ヶ岳</option>
@@ -119,12 +119,12 @@
     <div id="todo">
       <h2>todo app</h2>
       <form v-on:submit.prevent="sendTodo">
-        <input v-model='todo'>
+        <input v-model="todo">
         <button type="submit">追加</button>
       </form>
       <ul v-for="(item) in todoList">
         <li>
-          <span v-on:click='doneTodo(item)'>
+          <span v-on:click="doneTodo(item)">
             {{ item.status }}
             <s v-if="item.status === 'done'">
               {{ item.text }}
@@ -136,6 +136,10 @@
           <button v-on:click="deleteTodo(item)">delete</button>
         </li>
       </ul>
+    </div>
+    <div id="component">
+      <h2>component</h2>
+      <hello></hello>
     </div>
     <script src="/dist/build.js"></script>
   </body>
