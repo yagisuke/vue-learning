@@ -4,21 +4,117 @@
     <meta charset="utf-8">
     <title>vue-learning</title>
     <style>
-      img {
-        display: inline;
+      body {
+        width: 900px;
+        margin: 0 auto;
+        padding: 0 0 100px;
+        color: #4D4D4D;
       }
-    </style>
+
+      h1 {
+        color: #E6E6E6;
+      }
+
+      h2 {
+        margin-top: 40px; color: #B3B3B3;
+      }
+
+      h3 {
+        margin-top: 16px; color: #808080;
+      }
+
+      .text {
+        white-space: pre;
+      }
+  </style>
   </head>
   <body>
     <div id="app">
-      <div>
-        <div>count: {{ count }}</div>
-        <button @click="increment"> + </button>
-        <button @click="decrement"> - </button>
+      <h1>vue-learning</h1>
+      <h2>dataの表示</h2>
+      <div>{{ count }}</div>
+      <h2>v-showの使い方</h2>
+      <div v-show="vShow">{{ vShow }}</div>
+      <h2>v-ifの使い方</h2>
+      <div v-if="vIf">{{ vIf }}</div>
+      <h2>v-forの使い方</h2>
+      <h3>list</h3>
+      <ul v-for="(item, index) in vForList">
+        <li>{{ index }}: {{ item }}</li>
+      </ul>
+      <h3>object</h3>
+      <ul v-for="(val, key, index) in vForObject">
+        <li>{{ index }}: {{ key }} - {{ val }}</li>
+      </ul>
+      <h2>v-onの使い方</h2>
+      <button type="button" v-on:click="increment">+</button>
+      <button type="button" v-on:click="decrement">-</button>
+      <span>{{ count }}</span>
+      <h2>v-modelの使い方</h2>
+      <h3>text</h3>
+      <input v-model='vModelText'>
+      <p>{{ vModelText }}</p>
+      <textarea v-model='vModelTextArea'></textarea>
+      <p class="text">{{ vModelTextArea }}</p>
+      <h3>checkbox</h3>
+      <input type='checkbox' id="vModelCheckbox" v-model="vModelChecked">
+      <label for='vModelCheckbox'>理解した</label>
+      <p v-show="vModelChecked">理解できてよかったです</p>
+      <h3>checkbox list version</h3>
+      <input type='checkbox' id="vModelCheckbox1" value="React" v-model="vModelCheckedList">
+      <label for='vModelCheckbox1'>Reactを理解した</label>
+      <input type='checkbox' id="vModelCheckbox2" value="Vue" v-model="vModelCheckedList">
+      <label for='vModelCheckbox2'>Vueを理解した</label>
+      <input type='checkbox' id="vModelCheckbox3" value="Angular" v-model="vModelCheckedList">
+      <label for='vModelCheckbox3'>Angularを理解した</label>
+      <p v-show="vModelCheckedList.length">{{ vModelCheckedList }}</p>
+      <h3>radio</h3>
+      <input type='radio' id="vModelRadioFM" value="FM" v-model="vModelRadio">
+      <label for='vModelRadioFM'>FM</label>
+      <input type='radio' id="vModelRadioAM" value="AM" v-model="vModelRadio">
+      <label for='vModelRadioAM'>AM</label>
+      <p>{{ vModelRadio }}</p>
+      <h3>selectbox</h3>
+      <select v-model="vModelSelectBox">
+        <option value='' disabled>行きたい山を選んでください</option>
+        <option>高尾山</option>
+        <option>剣岳</option>
+        <option>槍ヶ岳</option>
+        <option>白馬岳</option>
+        <option>鳳凰三山</option>
+        <option>立山</option>
+      </select>
+      <div v-show="vModelSelectBox !== ''">
+        <p v-if="vModelSelectBox === '高尾山'">行ってらっしゃい</p>
+        <p v-if="vModelSelectBox !== '高尾山'">僕も行きたいです</p>
       </div>
-      <span v-for="_num in count">
-        <img src='/dist/logo.png' alt='vue.js'>
-      </span>
+      <h3>selectbox multiple version</h3>
+      <select v-model="vModelMultiSelectBox" multiple>
+        <option value='' disabled>行きたい山を選んでください</option>
+        <option>高尾山</option>
+        <option>剣岳</option>
+        <option>槍ヶ岳</option>
+        <option>白馬岳</option>
+        <option>鳳凰三山</option>
+        <option>立山</option>
+      </select>
+      <div v-show="vModelMultiSelectBox.length > 0">
+        <p v-if="vModelMultiSelectBox.length === 1 && vModelMultiSelectBox.includes('高尾山')">行ってらっしゃい</p>
+        <p v-if="vModelMultiSelectBox.length > 1 && vModelMultiSelectBox.includes('高尾山')">高尾山以外僕も行きたいです</p>
+        <p v-if="!vModelMultiSelectBox.includes('高尾山')">僕も行きたいです</p>
+      </div>
+      <h2>computed</h2>
+      <p>odd list</p>
+      <ul v-for="(item, index) in computedOddList">
+        <li>{{index}}: {{ item }}</li>
+      </ul>
+      <p>even list</p>
+      <ul v-for="(item, index) in computedEvenList">
+        <li>{{index}}: {{ item }}</li>
+      </ul>
+      <h2>template</h2>
+      <component-item></component-item>
+      <component-props-item content="chu-chu-"></component-props-item>
     </div>
     <script src="/dist/build.js"></script>
   </body>
