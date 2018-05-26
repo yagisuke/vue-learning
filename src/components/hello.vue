@@ -1,6 +1,9 @@
 <template>
   <div>
-    {{ hello }}
+    <h2>component</h2>
+    <p>
+      {{ hello }}
+    </p>
   </div>
 </template>
 
@@ -15,7 +18,7 @@ module.exports = {
 </script>
 
 <style scoped>
-div {
+p {
   text-align: center;
 }
 </style>
