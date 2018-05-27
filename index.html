@@ -138,6 +138,13 @@
       </ul>
     </div>
     <div id="component"></div>
+    <div id="vuex">
+      <h2>vuex</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+      <p>回数: {{ countWithPostfix }}</p>
+      <p>残回数: {{ remainingCountWithPostfix }}</p>
+    </div>
     <script src="/dist/build.js"></script>
   </body>
 </html>

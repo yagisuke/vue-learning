@@ -86,3 +86,59 @@ new Vue({
   components: { Hello },
   template: '<hello></hello>'
 })
+
+import Vuex, { mapState } from 'vuex'
+
+Vue.use(Vuex)
+
+const store = new Vuex.Store({
+  state: {
+    maxCount: 10,
+    minCount: 0,
+    count: 0
+  },
+  mutations: {
+    increment(state) {
+      if (state.count === state.maxCount) return
+      state.count++
+    },
+    decrement(state) {
+      if (state.count === state.minCount) return
+      state.count--
+    }
+  },
+  actions: {
+    increment(context) {
+      context.commit('increment')
+    },
+    decrement(context) {
+      context.commit('decrement')
+    }
+  },
+  getters: {
+    remainingCount(state) {
+      return state.maxCount - state.count
+    }
+  }
+})
+
+new Vue({
+  el: '#vuex',
+  store,
+  computed: {
+    remainingCountWithPostfix() {
+      return `${this.$store.getters.remainingCount}回`
+    },
+    ...mapState({
+      countWithPostfix: state => `${state.count}回`
+    })
+  },
+  methods: {
+    increment() {
+      store.dispatch('increment')
+    },
+    decrement() {
+      store.dispatch('decrement')
+    }
+  }
+})
