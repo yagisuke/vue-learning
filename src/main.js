@@ -221,9 +221,14 @@ const PageB = {
   template: '<div>page b</div>'
 }
 
+const Page = {
+  template: '<div>page {{ $route.params.pageId }}</div>'
+}
+
 const routes = [
   { path: '/a', component: PageA },
-  { path: '/b', component: PageB }
+  { path: '/b', component: PageB },
+  { path: '/page/:pageId', component: Page }
 ]
 
 const router = new VueRouter({
