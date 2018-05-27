@@ -154,6 +154,20 @@
       <p>incrementCount: {{ incrementCount }}</p>
       <p>decrementCount: {{ decrementCount }}</p>
     </div>
+
+    <div id="vue-router">
+      <h2>vue router</h2>
+      <ul>
+        <li>
+          <router-link to="/a">page a</router-link>
+        </li>
+        <li>
+          <router-link to="/b">page b</router-link>
+        </li>
+      </ul>
+      <router-view></router-view>
+    </div>
+
     <script src="/dist/build.js"></script>
   </body>
 </html>

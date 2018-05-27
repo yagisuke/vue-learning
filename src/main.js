@@ -208,3 +208,28 @@ new Vue({
     }
   }
 })
+
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
+
+const PageA = {
+  template: '<div>page a</div>'
+}
+
+const PageB = {
+  template: '<div>page b</div>'
+}
+
+const routes = [
+  { path: '/a', component: PageA },
+  { path: '/b', component: PageB }
+]
+
+const router = new VueRouter({
+  routes
+})
+
+const app = new Vue({
+  router
+}).$mount('#vue-router')
