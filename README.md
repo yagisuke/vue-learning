@@ -6,13 +6,20 @@
 
 ``` bash
 # install dependencies
-npm install
+yarn install
 
 # serve with hot reload at localhost:8080
-npm run dev
+yarn run dev
 
 # build for production with minification
-npm run build
+yarn run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## やったこと
+
+``` bash
+技術書店シリーズ
+Hello!! Vue.js
+最新プログレッシブフレームワーク入門
+https://www.amazon.co.jp/dp/B07CBJ5YF3/ref=cm_sw_r_tw_dp_U_x_XzScBbV43W5DW
+```
