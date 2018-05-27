@@ -143,3 +143,68 @@ new Vue({
     }
   }
 })
+
+const incrementModule = {
+  namespaced: true,
+  state: {
+    count: 0
+  },
+  mutations: {
+    count: (state, payload) => {
+      state.count += payload.count
+    }
+  },
+  actions: {
+    count (context) {
+      context.commit('count', { count: 1 })
+    }
+  }
+}
+
+const decrementModule = {
+  namespaced: true,
+  state: {
+    count: 0
+  },
+  mutations: {
+    count: (state, payload) => {
+      state.count -= payload.count
+    }
+  },
+  actions: {
+    count (context) {
+      context.commit('count', { count: 1 })
+    }
+  }
+}
+
+const counterStore = new Vuex.Store({
+  modules: {
+    incrementModule,
+    decrementModule
+  }
+})
+
+new Vue({
+  el: '#vuex-module',
+  counterStore,
+  computed: {
+    incrementCount() {
+      return counterStore.state.incrementModule.count
+    },
+    decrementCount() {
+      return counterStore.state.decrementModule.count
+    },
+    count() {
+      return this.incrementCount + this.decrementCount
+    }
+  },
+  methods: {
+    increment() {
+      counterStore.dispatch('incrementModule/count')
+    },
+    decrement() {
+      counterStore.dispatch('decrementModule/count')
+    }
+  }
+})

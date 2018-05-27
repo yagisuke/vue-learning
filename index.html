@@ -146,6 +146,14 @@
       <p>回数: {{ countWithPostfix }}</p>
       <p>残回数: {{ remainingCountWithPostfix }}</p>
     </div>
+    <div id="vuex-module">
+      <h2>vuex-module</h2>
+      <button @click="increment">+</button>
+      <button @click="decrement">-</button>
+      <p>count: {{ count }}</p>
+      <p>incrementCount: {{ incrementCount }}</p>
+      <p>decrementCount: {{ decrementCount }}</p>
+    </div>
     <script src="/dist/build.js"></script>
   </body>
 </html>
