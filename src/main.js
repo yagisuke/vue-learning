@@ -87,7 +87,7 @@ new Vue({
   template: '<hello></hello>'
 })
 
-import Vuex, { mapState, mapGetters } from 'vuex'
+import Vuex, { mapState, mapMutations } from 'vuex'
 
 Vue.use(Vuex)
 
@@ -112,12 +112,6 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    increment(context) {
-      context.commit('increment')
-    },
-    decrement(context) {
-      context.commit('decrement')
-    },
     double(context) {
       context.commit('multiplication', {
         number: 2
@@ -143,12 +137,7 @@ new Vue({
     })
   },
   methods: {
-    increment() {
-      store.dispatch('increment')
-    },
-    decrement() {
-      store.dispatch('decrement')
-    },
+    ...mapMutations(['increment', 'decrement']),
     double() {
       store.dispatch('double')
     }
