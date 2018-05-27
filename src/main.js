@@ -225,10 +225,62 @@ const Page = {
   template: '<div>page {{ $route.params.pageId }}</div>'
 }
 
+const User = {
+  template: `
+    <div class="user">
+      User Layout<br>
+      ------
+      <router-view></router-view>
+    </div>
+  `
+}
+
+const UserProfile = {
+  template: `
+    <div>
+      profile
+      <ul>
+        <li>name: hoge</li>
+        <li>age: 18</li>
+      </ul>
+    </div>
+  `
+}
+
+const UserNotifications = {
+  template: `
+    <div>
+      notifications
+      <div>
+        <input type="checkbox" name="mail" value="1">mail<br>
+        <input type="checkbox" name="push" value="1">push
+      </div>
+    </div>
+  `
+}
+
 const routes = [
   { path: '/a', component: PageA },
   { path: '/b', component: PageB },
-  { path: '/page/:pageId', component: Page }
+  { path: '/page/:pageId', component: Page },
+  {
+    path: '/user',
+    component: User,
+    children: [
+      {
+        path: 'profile',
+        component: UserProfile
+      },
+      {
+        path: 'notifications',
+        component: UserNotifications
+      }
+    ]
+  },
+  { path: '/old', redirect: '/a' },
+  { path: '/oldUser', redirect: to => {
+    return '/user/profile'
+  }},
 ]
 
 const router = new VueRouter({
