@@ -11,7 +11,7 @@
 module.exports = {
   data: function() {
     return {
-      hello: 'hello'
+      hello: 'こんにちわ'
     }
   }
 }
