@@ -87,14 +87,14 @@ new Vue({
   template: '<hello></hello>'
 })
 
-import Vuex, { mapState } from 'vuex'
+import Vuex, { mapState, mapGetters } from 'vuex'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    maxCount: 10,
     minCount: 0,
+    maxCount: 10,
     count: 0
   },
   mutations: {
@@ -105,6 +105,10 @@ const store = new Vuex.Store({
     decrement(state) {
       if (state.count === state.minCount) return
       state.count--
+    },
+    multiplication(state, payload) {
+      const val = state.count * payload.number
+      state.count = (val > state.maxCount) ? state.maxCount : val
     }
   },
   actions: {
@@ -113,6 +117,11 @@ const store = new Vuex.Store({
     },
     decrement(context) {
       context.commit('decrement')
+    },
+    double(context) {
+      context.commit('multiplication', {
+        number: 2
+      })
     }
   },
   getters: {
@@ -139,6 +148,9 @@ new Vue({
     },
     decrement() {
       store.dispatch('decrement')
+    },
+    double() {
+      store.dispatch('double')
     }
   }
 })
