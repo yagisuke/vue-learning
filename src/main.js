@@ -222,7 +222,8 @@ const PageB = {
 }
 
 const Page = {
-  template: '<div>page {{ $route.params.pageId }}</div>'
+  props: ['pageId'],
+  template: '<div>page {{ pageId }}</div>'
 }
 
 const User = {
@@ -262,7 +263,7 @@ const UserNotifications = {
 const routes = [
   { path: '/a', component: PageA },
   { path: '/b', component: PageB },
-  { path: '/page/:pageId', component: Page },
+  { path: '/page/:pageId', component: Page, props: true },
   {
     path: '/user',
     component: User,
